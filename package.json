@@ -14,6 +14,6 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/paztek/node-memory-cache.git"
+    "url": "git://github.com/paztek/node-simple-memory-cache.git"
   }
 }
