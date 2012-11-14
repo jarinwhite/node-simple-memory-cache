@@ -1,0 +1,19 @@
+{
+  "name": "node-simple-memory-cache",
+  "description": "A very simple memory cache for objects, with namespaces and auto timeouts",
+  "author": "Matthieu Balmes<matthieu.balmes@gmail.com>",
+  "url": "https://github.com/paztek/node-memory-cache",
+  "keywords": [
+    "cache",
+    "memory",
+    "storage",
+    "namespace",
+    "object"
+  ],
+  "main": "./index.js",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paztek/node-memory-cache.git"
+  }
+}
