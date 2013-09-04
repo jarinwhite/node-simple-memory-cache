@@ -77,6 +77,31 @@ var MemoryCache = function(options) {
 		return cache;
 	};
 	
+	cache.touch	= function(key, namespace, expirationTime) {
+		// If no expirationTime is set, use the default
+		if (arguments.length < 3) var expirationTime = cache.defaultExpirationTime;
+		
+	    // If no namespace is provided, we use the 'default' namespace
+	    if (arguments.length < 2) var namespace = 'default';
+
+	    // If a non-valid key is provided, we throw an error
+	    if (arguments.length < 1 || !(typeof key == 'string') || key.length == 0) throw new Error('MEMORY CACHE : ERROR : You must provide a valid string for the key');
+        
+        // If we can't find the namespace, we return undefined
+        if (!(namespace in cache.namespaces)) return undefined;
+        
+        // If we can't find the key in the namespace, we return undefined
+        if (!(key in cache.namespaces[namespace])) return undefined;
+		
+		//Clear the existing timeout
+		clearTimeout(cache.namespaces[namespace][key].timeoutId);
+		
+		//Set the new timeout
+		cache.namespaces[namespace][key].timeoutId = setTimeout(function() {
+		    delete cache.namespaces[namespace][key];
+		}, expirationTime)
+	};
+	
 	cache.get = function(key, namespace) {
 	    // If no namespace is provided, we use the 'default' namespace
 	    if (arguments.length < 2) var namespace = 'default';
